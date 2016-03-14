@@ -4,8 +4,11 @@ import datetime
 import dropbox
 import os
 
+#Your accessToken
 accessToken = ""
 date = datetime.datetime.now().strftime("%Y-%m-%d")
+
+#The directory where you want to save your backups
 backupDir = "backups/"
 backupPath = backupPath+datetime
 
@@ -13,11 +16,11 @@ dbx = dropbox.Dropbox(accessToken)
 dbx.users_get_current_account()
 
 
-def backupFolder(folderPath):
+def backupFolder(dropboxFolderToBackup):
     os.mkdir(date)
-    files = dbx.files_list_folder(folderPath, True)
+    files = dbx.files_list_folder(dropboxFolderToBackup, True)
 
-    entries = [] #files.entries
+    entries = [] 
     hasMore = files.has_more
     cursor = files.cursor
     
