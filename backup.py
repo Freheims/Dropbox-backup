@@ -17,7 +17,6 @@ dbx.users_get_current_account()
 
 
 def backupFolder(dropboxFolderToBackup):
-    os.mkdir(date)
     files = dbx.files_list_folder(dropboxFolderToBackup, True)
 
     entries = [] 
