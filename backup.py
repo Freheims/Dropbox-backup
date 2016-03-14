@@ -10,7 +10,7 @@ date = datetime.datetime.now().strftime("%Y-%m-%d")
 
 #The directory where you want to save your backups
 backupDir = "backups/"
-backupPath = backupPath+datetime
+backupPath = backupDir+date
 
 dbx = dropbox.Dropbox(accessToken)
 dbx.users_get_current_account()
@@ -49,6 +49,5 @@ def saveEntry(entry):
         print(filePath)
         print(err)
 
-def main():
-    backupFolder("")
+backupFolder("")
 
