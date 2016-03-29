@@ -38,14 +38,11 @@ def backupFolder(dropboxFolderToBackup):
 def saveEntry(entry):
     filePath = entry.path_lower
     folder = os.path.split(filePath)[0]
-    print(folder)
     if not os.path.exists(backupPath + folder):
         os.makedirs(backupPath + folder)
-    print(filePath)
     try:
         dbx.files_download_to_file(backupPath + filePath, filePath)
     except dropbox.exceptions.ApiError as err:
-        print(filePath)
         print(err)
 
 def removeOldBackups(nrOfBackupsToKeep):
