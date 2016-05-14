@@ -46,7 +46,7 @@ def saveEntry(entry):
         print(err)
 
 def removeOldBackups(nrOfBackupsToKeep):
-    os.chdir(backupPath)
+    os.chdir(backupDir)
     backups = os.listdir()
     backups.sort()
     nrOfBackups = len(backups)
