@@ -3,6 +3,7 @@ import json
 import datetime
 import dropbox
 import os
+import shutil
 
 #Your accessToken
 accessToken = ""
@@ -52,7 +53,7 @@ def removeOldBackups(nrOfBackupsToKeep):
     nrOfBackups = len(backups)
     if(nrOfBackups > nrOfBackupsToKeep):
         oldestBackup = backups[0]
-        os.removedirs(oldestBackup)
+        shutil.rmtree(oldestBackup)
 
 backupFolder("")
 removeOldBackups(10)
