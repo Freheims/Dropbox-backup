@@ -13,8 +13,10 @@ date = datetime.datetime.now().strftime("%Y-%m-%d")
 backupDir = "backups/"
 backupPath = backupDir+date
 
-dbx = dropbox.Dropbox(accessToken)
-dbx.users_get_current_account()
+logfile = backupDir + "log.txt"
+
+#dbx = dropbox.Dropbox(accessToken)
+#dbx.users_get_current_account()
 
 
 def backupFolder(dropboxFolderToBackup):
@@ -43,8 +45,8 @@ def saveEntry(entry):
         os.makedirs(backupPath + folder)
     try:
         dbx.files_download_to_file(backupPath + filePath, filePath)
-    except dropbox.exceptions.ApiError as err:
-        print(err)
+    except dropbox.exceptions.ApiError as err:        
+        logToFile(err)
 
 def removeOldBackups(nrOfBackupsToKeep):
     os.chdir(backupDir)
@@ -54,6 +56,12 @@ def removeOldBackups(nrOfBackupsToKeep):
     if(nrOfBackups > nrOfBackupsToKeep):
         oldestBackup = backups[0]
         shutil.rmtree(oldestBackup)
+
+def logToFile(error):
+    log = open(logfile, "a+")
+    log.write(error)
+    log.write("\n")
+    log.close()
 
 backupFolder("")
 removeOldBackups(10)
