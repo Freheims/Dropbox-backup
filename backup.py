@@ -15,8 +15,8 @@ backupPath = backupDir+date
 
 logfile = backupDir + "log.txt"
 
-#dbx = dropbox.Dropbox(accessToken)
-#dbx.users_get_current_account()
+dbx = dropbox.Dropbox(accessToken)
+dbx.users_get_current_account()
 
 
 def backupFolder(dropboxFolderToBackup):
